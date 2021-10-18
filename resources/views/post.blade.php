@@ -8,6 +8,10 @@
                 {{ $post->title }}
             </h1>
 
+            <p>
+                <a href="/categories/{{ $post->category->slug }}">{{ $post->category->namegi }}</a>
+            </p>
+
             <div>
                 {!! $post->body !!}
             </div>
