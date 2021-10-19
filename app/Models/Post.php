@@ -13,6 +13,13 @@ class Post extends Model
 
     protected $with=['category','author']; //every time fetch post, always want author and category included
 
+    public function scopeFilter($query, array $filters)
+    {
+        $query->when($filters['search'] ?? false, fn ($query, $search)=>
+            $query
+                ->where('title','like','%' . request('search') . '%')
+                ->orWhere('body','like','%' . request('search') . '%'));
+    }
     public function category(){
         return $this->belongsTo(Category::class);
     }
