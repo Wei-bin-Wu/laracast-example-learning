@@ -24,13 +24,16 @@ class RegisterController extends Controller
 
 //        $attributes['password']=bcrypt($attributes['password']);
 
-        User::create($attributes);  // eloquent model, function that called when set password in User model
+        $user = User::create($attributes);  // eloquent model, function that called when set password in User model
 //        User::create([
 //            'name' => $attributes['name'],
 //            'password'=> bcrypt($attributes['password'])
 //        ]);
 
 //        session()->flash('success','Your account has been created.');
+
+        // log in usar helper auth() , o Auth de Facade
+        auth()->login($user);
 
         return redirect('/')->with('success','Your account has been created.');
     }
