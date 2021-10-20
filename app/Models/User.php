@@ -19,6 +19,13 @@ class User extends Authenticatable
      */
     protected $guarded=['id'];
 
+    // igualmente puede usar para otros atributos
+    // por ejemplo
+    // public function setUsernameAttribute($username){$this->attributes['username']=ucword($username);}
+    public function setPasswordAttribute($password)
+    {
+        $this->attributes['password']=bcrypt($password);
+    }
     /**
      * The attributes that should be hidden for serialization.
      *

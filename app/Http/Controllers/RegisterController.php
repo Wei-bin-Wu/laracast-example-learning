@@ -20,7 +20,13 @@ class RegisterController extends Controller
             'password' => 'required|min:7|max:255',
         ]);
 
-        User::create($attributes);
+//        $attributes['password']=bcrypt($attributes['password']);
+
+        User::create($attributes);  // eloquent model, function that called when set password in User model
+//        User::create([
+//            'name' => $attributes['name'],
+//            'password'=> bcrypt($attributes['password'])
+//        ]);
 
         return redirect('/');
     }
